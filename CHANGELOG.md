@@ -15,6 +15,10 @@ at anytime.
 ### Fixed
   * Fixed unnecessarily verbose exchange rate error (https://github.com/lbryio/lbry/issues/984)
   * Merged two sepereate dht test folders into one
+  * Fixed minor typ0s
+  * Fixed UPnP setup to avoid race conditions
+  * Fixed port sanity check
+  *
 
 ### Deprecated
   * `channel_list_mine`, replaced with `channel_list`
@@ -25,10 +29,14 @@ at anytime.
   * Renamed `channel_list_mine` to `channel_list`
   * Changed `channel_list` to include channels where the certificate info has been imported but the claim is not in the wallet
   * Changed `file_list`, `file_delete`, `file_set_status`, and `file_reflect` to no longer return claim related information.
+  * Changed UPnP logic to check for available external port. Use addanyportmapping() now, unless user has specified port in config
 
 ### Added
   * Added `channel_import` and `channel_export` commands
   * Added `is_mine` field to `channel_list` results
+  * Added `external_peer_port` field to Session
+  * Added `external_dht_node_port` field to Session
+  * Added method to check if a config value is user specified or not
 
 ### Removed
   * Removed claim related filter arguments `name`, `claim_id`, and `outpoint` from `file_list`, `file_delete`, `file_set_status`, and `file_reflect`
