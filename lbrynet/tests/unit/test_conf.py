@@ -77,3 +77,20 @@ class SettingsTest(unittest.TestCase):
         self.assertEqual(str, type(conf.default_download_dir))
         self.assertEqual(str, type(conf.default_data_dir))
         self.assertEqual(str, type(conf.default_lbryum_dir))
+
+    def test_is_default(self):
+        settings = {'default': (str, ''), 'non-default1': (str, ''),
+                    'non-default2': (str, ''), 'non-default3': (str, '')}
+
+        pers_settings = {'non-default1': (str, '')}
+        env_settings = {'non-default2': (str, '')}
+        env = conf.Env(**env_settings)
+        cli_settings = {'non-default3': (str, '')}
+
+        c = conf.Config({}, settings, persisted_settings=pers_settings, environment=env,
+                        cli_settings=cli_settings)
+
+        self.assertTrue(c.is_default('default'))
+        self.assertFalse(c.is_default('non-default1'))
+        self.assertFalse(c.is_default('non-default2'))
+        self.assertFalse(c.is_default('non-default3'))
