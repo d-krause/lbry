@@ -32,6 +32,8 @@ at anytime.
   * Don't set HTTP error codes for failed api requests, conform to http://www.jsonrpc.org/specification#error_object
   * Return less verbose tracebacks for api requests resulting in errors
   * Don't include file names when logging information about streams, only include sd hashes
+  * Re-use addresses used for lbrycrd info exchange, this was a significant source of address bloat in the wallet
+  * Remove manual saving of the wallet in from lbrynet, let lbryum handle it
 
 ### Added
   * Added `channel_import` and `channel_export` commands
